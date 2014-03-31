@@ -425,7 +425,7 @@ function print_lunch_menu()
     echo
     echo "You're building on" $uname
     echo
-    if [ "z${ROOTBOX_DEVICES_ONLY}" != "z" ]; then
+    if [ "z${SINFUL_DEVICES_ONLY}" != "z" ]; then
        echo "Breakfast menu... pick a combo:"
     else
        echo "Lunch menu... pick a combo:"
@@ -439,7 +439,7 @@ function print_lunch_menu()
         i=$(($i+1))
     done
 
-    if [ "z${ROOTBOX_DEVICES_ONLY}" != "z" ]; then
+    if [ "z${SINFUL_DEVICES_ONLY}" != "z" ]; then
        echo "... and don't forget the bacon!"
     fi
 
@@ -462,10 +462,10 @@ function brunch()
 function breakfast()
 {
     target=$1
-    ROOTBOX_DEVICES_ONLY="true"
+    SINFUL_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/rootbox/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/sinful/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -481,7 +481,7 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            lunch rootbox_$target-userdebug
+            lunch sinful_$target-userdebug
         fi
     fi
     return $?
@@ -1179,7 +1179,7 @@ function mka() {
 function mbot() {
     unset LUNCH_MENU_CHOICES
     croot
-    ./vendor/rootbox/bot/deploy.sh
+    ./vendor/sinful/bot/deploy.sh
 }
 
 function mkapush() {
